@@ -1,0 +1,126 @@
+<!--TODO: figure out the edit instead of form-->
+<form class="mt-3" *ngFor="let timeInput of timeInputs; index as i">
+    <!--    HEADER -->
+    <div class="form-row header p-2 m-0 align-items-center">
+        <div class="col col-sm-7 col-md-8 pl-4 align-middle">
+            <div>{{timeInput.date | date}}</div>
+        </div>
+        <div class="col col-sm-4 col-md-3 text-right">
+            Total: {{timeInput.timeCounted | convertTime}}
+        </div>
+        <div class="col">
+            <i class="far fa-copy"></i>
+        </div>
+    </div>
+
+    <!--    Bottom -->
+    <div class="row m-0 align-items-center text-sm-center">
+        <!--        description-->
+        <div class="col-sm-12 col-lg-2 col-xl-3">
+            <input
+                    name="desc"
+                    class="description w-100 p-3"
+                    type="text"
+                    placeholder="{{timeInput.desc}}"
+                    ngModel
+            >
+        </div>
+        <!--projects        -->
+        <div class="col-6 col-lg">
+            <mat-form-field>
+                <mat-label class="project">+ Project</mat-label>
+                <mat-select [(value)]="timeInput.project">
+                    <mat-option *ngFor="let project of projects" [value]="project">
+                        {{project}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <!--tags-->
+        <div class="col-3 col-lg show">
+            <mat-form-field class="show">
+                <mat-label><i class="fas fa-tag align-middle"></i></mat-label>
+                <mat-select [(value)]="timeInput.tag">
+                    <mat-option *ngFor="let tag of tags" [value]="tag">
+                        {{tag}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <!--            billable-->
+        <div class="col-3 col-lg text-center py-1 my-0">
+            <label class="checkbox">
+                <input type="checkbox" name="billable" [value]="timeInput.billable">
+                <i class="fas fa-dollar-sign align-middle unchecked"></i>
+                <i class="fas fa-dollar-sign align-middle checked"></i>
+            </label>
+        </div>
+        <!--            time-->
+        <div class="col-3 col-lg">
+
+            <mat-form-field>
+                <label for="timeFrom" class="sr-only"></label>
+                <input
+                        id="timeFrom"
+                        matInput
+                        placeholder="{{timeInput.timeFrom | date: 'shortTime'}}"
+                        [value]="timeInput.timeFrom"
+                        class="form-control mx-2 time">
+            </mat-form-field>
+        </div>
+        <div class="col-3 col-lg">
+            <mat-form-field>
+                <label for="timeTo" class="sr-only"></label>
+                <input
+                        id="timeTo"
+                        matInput
+                        placeholder="{{timeInput.timeTo | date: 'shortTime'}}"
+                        [value]="timeInput.timeTo"
+                        class="form-control mx-2 time">
+            </mat-form-field>
+        </div>
+        <!--            calendar-->
+
+        <!--TODO: change to angular.material-->
+
+        <div class="col-1 col-lg">
+            <!---->
+                   <mat-form-field>
+                        <input matInput [matDatepicker]="date" [value]="date">
+                        <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+                        <mat-datepicker #date></mat-datepicker>
+                    </mat-form-field>
+            <!-- <ngb-datepicker class="form-control d-none" placeholder="yyyy-mm-dd"
+                   name="date" ngModel ngbDatepicker #d="ngbDatepicker"></ngb-datepicker> -->
+            <!-- <div class="input-group-append">
+                <button class="btn" (click)="date.toggle()" type="button"><i
+                        class="far fa-calendar-alt"></i></button>
+            </div> -->
+        </div>
+        <!--            timeCounted-->
+        <div class="col-3 col-lg">
+            {{timeInput.timeCounted | convertTime}}
+        </div>
+        <!--            continue time-->
+        <div class="col-1 col-lg">
+            <button class="btn" (click)="continueTime()"><i class="fas fa-play otherIcon"></i></button>
+        </div>
+        <!--            dots - duplicate, delete-->
+        <div class="col-1 col-lg text-center py-1 my-0 forBorder">
+            <div class="dropdown show">
+                <a
+                        role="button"
+                        id="dots"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                    <i class="fas fa-ellipsis-v otherIcon"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" (click)="onDuplicate(i)">Duplicate</a>
+                    <a class="dropdown-item" (click)="onDelete(i)">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

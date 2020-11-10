@@ -1,0 +1,58 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+form {
+    border: 1px solid $lightGreyColor;
+    background-color: $formColor;
+}
+
+.header {
+    background-color: $headerColor;
+}
+
+.description {
+    @include description;
+}
+
+.project {
+    @include project;
+}
+
+.fas {
+    @include icons;
+}
+
+.checkbox input[type="checkbox"],
+.checkbox .checked {
+    display: none;
+}
+
+.checkbox input[type="checkbox"]:checked ~ .checked
+{
+    display: inline-block;
+}
+
+.checkbox input[type="checkbox"]:checked ~ .unchecked
+{
+    display: none;
+}
+
+.unchecked {
+    color: $darkGreyColor;
+}
+
+.otherIcon {
+    color: $darkGreyColor;
+}
+
+.time {
+    border: none;
+    padding: 0;
+    font-size: small;
+}
+
+
+@media screen and (max-width: 990px) {
+
+
+}

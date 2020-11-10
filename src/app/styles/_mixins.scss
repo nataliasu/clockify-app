@@ -1,0 +1,28 @@
+@import '../styles/variables';
+
+@mixin description {
+  border: none;
+
+  &:hover {
+    border: 1px dotted $lightGreyColor;
+  }
+
+  &::placeholder {
+    color: $lightGreyColor;
+  }
+}
+
+@mixin project {
+  color: $blue;
+  font-size: 15px;
+
+  &:hover {
+    color: $buttonHoverColor;
+  }
+}
+
+@mixin icons {
+  color: $blue;
+
+  padding-top: 5px;
+}

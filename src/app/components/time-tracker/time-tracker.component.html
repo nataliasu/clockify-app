@@ -1,0 +1,123 @@
+<form [formGroup]="timeForm" (ngSubmit)="onSubmit()" class="mt-3">
+    <div class="form-row">
+        <!--        description-->
+        <div class="col-8 col-md-9 pt-2">
+            <label for="task" class="sr-only">Your task</label>
+            <div class="input-group">
+                <input
+                        id="task"
+                        formControlName="desc"
+                        class="description w-100 p-3"
+                        type="text"
+                        placeholder="What are you working on?"
+                >
+            </div>
+        </div>
+        <!--        project-->
+        <div class="col-4 col-md-3 text-right">
+            <mat-form-field class="w-100 pr-1">
+                <mat-label class="project">+ Project</mat-label>
+                <mat-select [(value)]="selectedProject">
+                    <mat-option *ngFor="let project of projects" [value]="project">
+                        {{project}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="form-row m-0 text-right">
+        <!--        tags-->
+        <div class="form-group text-center py-1 my-0 forBorder" [ngClass]="show ? 'col-2' : 'col-3'">
+            <mat-form-field class="show">
+                <mat-label><i class="fas fa-tag align-middle"></i></mat-label>
+                <mat-select [(value)]="selectedTag">
+                    <mat-option *ngFor="let tag of tags" [value]="tag">
+                        {{tag}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <!--        billable-->
+        <div class="form-group forBorder text-center py-1 my-0" [ngClass]="show ? 'col-1' : 'col-3'">
+            <label class="checkbox">
+                <input type="checkbox" formControlName="billable">
+                <i class="fas fa-dollar-sign align-middle unchecked"></i>
+                <i class="fas fa-dollar-sign align-middle checked"></i>
+            </label>
+        </div>
+        <div class="form-group forBorder py-1 my-0 text-right" [ngClass]="show ? 'col-9' : 'col-6'">
+            <div class="input-group">
+                <ng-container *ngIf="show">
+                    <!--                    time from-->
+                    <div class="col-2">
+                        <mat-form-field>
+                            <label for="timeFrom" class="sr-only"></label>
+                            <input
+                                    id="timeFrom"
+                                    matInput
+                                    placeholder="{{timeFrom | date: 'shortTime'}}"
+                                    formControlName="timeFrom"
+                                    class="form-control mx-2 time">
+                        </mat-form-field>
+                    </div>
+                    <!--                    time to-->
+                    <div class="col-2">
+                        <mat-form-field>
+                            <label for="timeTo" class="sr-only"></label>
+                            <input
+                                    id="timeTo"
+                                    matInput
+                                    placeholder="{{timeTo | date: 'shortTime'}}"
+                                    formControlName="timeTo"
+                                    class="form-control mx-2 time">
+                        </mat-form-field>
+                    </div>
+                    <!--                    date-->
+                    <div class="col">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="date" formControlName="date" [value]="date">
+                            <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+                            <mat-datepicker #date></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </ng-container>
+                <!--                counted time-->
+                <p class="px-2 pt-2 align-middle"
+                   [ngClass]="show ? 'countTime' : ''">{{ timeCounter | convertTime }}</p>
+                <!--                buttons-->
+                <button
+                        type="button"
+                        class="btn btn-start text-uppercase align-middle"
+                        [ngClass]="[show ? 'd-none' : '', play ? 'd-none' : '']"
+                        (click)="startTimer()">
+                    Start
+                </button>
+                <button
+                        class="btn btn-stop text-uppercase align-middle"
+                        type="submit"
+                        [ngClass]="play ? '' : 'd-none'"
+                        (click)="stopTimer()">
+                    Stop
+                </button>
+                <button
+                        class="btn btn-add text-uppercase align-middle"
+                        type="submit"
+                        [ngClass]="show ? '' : 'd-none'">
+                    Add
+                </button>
+                <button
+                        type="button"
+                        class="btn px-2 align-middle"
+                        (click)="toggle()"
+                        id="bt"
+                        [ngClass]="show ? 'fas fa-list' : 'far fa-clock'">
+                    <i class="pl-2 align-middle"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--<app-time-tracker-list *ngIf="ttService.submit"></app-time-tracker-list> TO JEST OK-->
+<app-time-tracker-list [projects]="projects" [tags]="tags" [timeCounter]="timeCounter"></app-time-tracker-list>

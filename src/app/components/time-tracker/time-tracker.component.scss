@@ -1,0 +1,111 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+* {
+  line-height: 1;
+}
+
+form {
+  border: 1px solid $lightGreyColor;
+  background-color: white;
+}
+
+.description {
+  @include description;
+}
+
+.forBorder {
+  border-top: 1px solid $lightGreyColor;
+  border-left: 1px dotted $lightGreyColor;
+}
+
+.fas {
+  @include icons;
+  font-size: 1.5em;
+}
+
+.noClients{
+  color: $lightGreyColor;
+}
+
+.fa-clock {
+  color: $blue;
+}
+
+.otherIcon {
+  color: $darkGreyColor;
+}
+
+.checkbox input[type="checkbox"],
+.checkbox .checked {
+  display: none;
+}
+
+.checkbox input[type="checkbox"]:checked ~ .checked
+{
+  display: inline-block;
+}
+
+.checkbox input[type="checkbox"]:checked ~ .unchecked
+{
+  display: none;
+}
+
+.unchecked {
+  color: $darkGreyColor;
+}
+
+.btn-start,
+.btn-add {
+  background-color: $blue;
+  color: white;
+  font-size: 12px;
+
+  &:hover {
+    background-color: $buttonHoverColor;
+  }
+}
+
+.btn-stop {
+  background-color: $redColor;
+  color: $formColor;
+  font-size: 12px;
+}
+
+.project {
+@include project
+}
+
+.create {
+  color: $blue;
+}
+
+#bt {
+  color: $blue;
+}
+
+.time {
+  border: none;
+  padding-right: 10px;
+}
+
+.countTime {
+  border-left: 1px dotted $lightGreyColor;
+}
+
+fa-calendar-alt {
+  font-size: 1.5em;
+}
+
+.mat-form-field-wrapper {
+  width: 100px;
+}
+
+.mat-select {
+  font-size: 12px;
+}
+
+.mat-form-field-label {
+  padding-left: 5px;
+  padding-bottom: 5px;
+}

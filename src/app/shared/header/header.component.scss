@@ -1,0 +1,118 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.container-fluid {
+  background-color: $backColor;
+}
+
+.navbar-brand {
+  font-size: 2em;
+  letter-spacing: 3px;
+  padding-left: 20px;
+  padding-top: 10px;
+  border-bottom: 1px dotted $lightGreyColor;
+  border-left: 5px solid $lightGreyColor;
+  color: $blue;
+}
+
+.nav-link, .dropdown-item {
+  color: $darkGreyColor;
+  font-size: 13px;
+  /*padding-left: 20px;*/
+}
+
+.dropdown-item {
+  padding: 10px 15px;
+}
+
+.fas {
+  font-size: 25px;
+  padding: 5px 20px 5px 5px;
+  color: $darkGreyColor;
+}
+
+.nav-item:nth-child(2) {
+  border-left: 5px solid #607D8B;
+}
+
+.nav-item:nth-child(3) {
+  border-left: 5px solid #ED4634;
+}
+
+.nav-item:nth-child(4) {
+  border-left: 5px solid #39A9F4;
+}
+
+.nav-item:nth-child(5) {
+  border-left: 5px solid #8BC24A;
+}
+
+.nav-item:nth-child(6) {
+  border-left: 5px solid #9D42B0;
+}
+
+.nav-item:nth-child(7) {
+  border-left: 5px solid #419688;
+}
+
+.nav-item:nth-child(8) {
+  border-left: 5px solid #6CEAB7;
+}
+
+.nav-item:nth-child(9) {
+  border-left: 5px solid #F39D98;
+}
+
+.nav-item:nth-child(10) {
+  border-left: 5px solid #FFEB3B;
+}
+
+.nav-item:nth-child(11) {
+  border-left: 5px solid #EA6EFE;
+}
+
+.nav-item, .dropdown-item {
+  padding-right: 0;
+  background: linear-gradient(to right, #E4EAEE 50%, white 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all .3s ease-out;
+}
+
+.nav-item:hover, .dropdown-item:hover {
+  background-position: left bottom;
+}
+
+.nav {
+  height: 100vh;
+  padding-left: 0;
+  background-color: white;
+  -webkit-box-shadow: 2px 0px 5px 0px rgba(198, 198, 198, 0.611);
+  -moz-box-shadow: 2px 0px 5px 0px rgba(198, 198, 198, 0.611);
+  box-shadow: 2px 0px 5px 0px rgba(198, 198, 198, 0.611);
+}
+
+@media screen and (max-width: 950px) {
+  span.text {
+    display: none;
+  }
+
+  .nav {
+    width: 77px;
+  }
+
+  .navbar-brand, .dropdown-item, .nav-link {
+    padding: 10px 0 10px 6px;
+  }
+
+  .navbar-brand {
+    padding-top: 0;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .fas {
+    font-size: 20px;
+  }
+}
+
